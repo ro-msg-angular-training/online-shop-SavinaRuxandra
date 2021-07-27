@@ -1,0 +1,33 @@
+h2 {
+  color: #4CAF50;
+  font-size: 25px;
+  margin-left: 2%;
+}
+
+.cards {
+  display: flex;
+}
+
+mat-card{
+  border: 5px #4caf50;
+  width: 270px;
+  border-top: 7px solid #4caf50;
+  border-left: 1px solid #4caf50;
+  border-right: 1px solid #4caf50;
+  border-radius: 10px;
+  margin-left: 2%;
+  margin-right: 2%;
+}
+
+mat-card-header {
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+
+p {
+  color: #4CAF50;
+  margin-top: 10px;
+  font-style: italic;
+  margin-left: auto;
+}

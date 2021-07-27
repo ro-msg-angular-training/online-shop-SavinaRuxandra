@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+
+<h2>Product Detail</h2>
+
+<div class="cards">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Product</mat-card-title>
+      <mat-card-subtitle>- details -</mat-card-subtitle>
+      <hr color="#4CAF50">
+    </mat-card-header>
+    <mat-card-content>
+      <mat-list>
+        <mat-list-item>Id: <p>&nbsp;{{product.id}}</p></mat-list-item>
+        <mat-list-item>Name: <p>&nbsp;{{product.name}}</p></mat-list-item>
+        <mat-list-item>Description: <p>&nbsp;{{product.description}}</p></mat-list-item>
+        <mat-list-item>Price: <p>&nbsp;{{product.price}}</p></mat-list-item>
+        <mat-list-item>Weight: <p>&nbsp;{{product.weight}}</p></mat-list-item>
+        <mat-list-item>Image Url: <p>&nbsp;{{product.imageUrl}}</p></mat-list-item>
+      </mat-list>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Product Category</mat-card-title>
+      <mat-card-subtitle>- details -</mat-card-subtitle>
+      <hr color="#4CAF50">
+    </mat-card-header>
+    <mat-card-content>
+      <mat-list>
+        <mat-list-item>Id: <p>&nbsp;{{product.category.id}}</p></mat-list-item>
+        <mat-list-item>Name: <p>&nbsp;{{product.category.name}}</p></mat-list-item>
+        <mat-list-item>Description: <p>&nbsp;{{product.category.description}}</p></mat-list-item>
+      </mat-list>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Supplier</mat-card-title>
+      <mat-card-subtitle>- details -</mat-card-subtitle>
+      <hr color="#4CAF50">
+    </mat-card-header>
+    <mat-card-content>
+      <mat-list>
+        <mat-list-item>Id: <p>&nbsp;{{product.supplier.id}}</p></mat-list-item>
+        <mat-list-item>Nationality: <p>&nbsp;{{product.supplier.name}}</p></mat-list-item>
+      </mat-list>
+    </mat-card-content>
+  </mat-card>
+</div>
