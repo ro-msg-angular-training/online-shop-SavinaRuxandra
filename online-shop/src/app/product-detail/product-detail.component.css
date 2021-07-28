@@ -16,7 +16,7 @@ h2 {
 
 mat-card{
   border: 5px #4caf50;
-  width: 270px;
+  width: 100%;
   border-top: 7px solid #4caf50;
   border-left: 1px solid #4caf50;
   border-right: 1px solid #4caf50;
@@ -48,6 +48,14 @@ button {
   border: 2px solid #4CAF50;
 }
 
+button:hover {
+  background-color: #daf1da;
+}
+
+button:active {
+  background-color: #00e600;
+}
+
 .button-back {
   width: 30px;
   height: 30px;
@@ -60,6 +68,14 @@ button {
   padding: 5px 0 0
 }
 
-button:hover {
-  background-color: #daf1da;
+.button-delete {
+  float: right;
+  width: 40px;
+  height: 40px;
+  border-radius: 7px;
+  margin-right: 7px
+}
+
+.trash{
+  color:red
 }

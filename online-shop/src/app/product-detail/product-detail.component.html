@@ -5,58 +5,33 @@
     <mat-icon>keyboard_arrow_left</mat-icon>
   </button>
   <h2>Product Detail</h2>
+
 </div>
 
 <div class="cards" *ngIf="product">
   <mat-card>
     <mat-card-header>
       <mat-card-title>Product</mat-card-title>
+      <button class="button-cart" (click)="addToShoppingCart()">
+        <mat-icon>add_shopping_cart</mat-icon>
+      </button>
       <mat-card-subtitle>- details -</mat-card-subtitle>
       <hr color="#4CAF50">
+
     </mat-card-header>
     <mat-card-content>
       <mat-list>
         <mat-list-item>Id: <p>&nbsp;{{product.id}}</p></mat-list-item>
         <mat-list-item>Name: <p>&nbsp;{{product.name}}</p></mat-list-item>
-        <mat-list-item>Description: <p>&nbsp;{{product.description}}</p></mat-list-item>
+        <mat-list-item>Category: <p>&nbsp;{{product.category}}</p></mat-list-item>
         <mat-list-item>Price: <p>&nbsp;{{product.price}}</p></mat-list-item>
-        <mat-list-item>Weight: <p>&nbsp;{{product.weight}}</p></mat-list-item>
-        <mat-list-item>Image Url: <p>&nbsp;{{product.imageUrl}}</p></mat-list-item>
+        <mat-list-item>Image: <p>&nbsp;{{product.image}}</p></mat-list-item>
+        <mat-list-item>Description: <p>&nbsp;{{product.description}}</p></mat-list-item>
       </mat-list>
     </mat-card-content>
+    <button class="button-delete" (click)="deleteProductById()">
+      <mat-icon class="trash">delete</mat-icon>
+    </button>
   </mat-card>
-
-  <mat-card>
-    <mat-card-header>
-      <mat-card-title>Product Category</mat-card-title>
-      <mat-card-subtitle>- details -</mat-card-subtitle>
-      <hr color="#4CAF50">
-    </mat-card-header>
-    <mat-card-content>
-      <mat-list>
-        <mat-list-item>Id: <p>&nbsp;{{product.category.id}}</p></mat-list-item>
-        <mat-list-item>Name: <p>&nbsp;{{product.category.name}}</p></mat-list-item>
-        <mat-list-item>Description: <p>&nbsp;{{product.category.description}}</p></mat-list-item>
-      </mat-list>
-    </mat-card-content>
-  </mat-card>
-
-  <mat-card>
-    <mat-card-header>
-      <mat-card-title>Supplier</mat-card-title>
-      <mat-card-subtitle>- details -</mat-card-subtitle>
-      <hr color="#4CAF50">
-    </mat-card-header>
-    <mat-card-content>
-      <mat-list>
-        <mat-list-item>Id: <p>&nbsp;{{product.supplier.id}}</p></mat-list-item>
-        <mat-list-item>Nationality: <p>&nbsp;{{product.supplier.name}}</p></mat-list-item>
-      </mat-list>
-    </mat-card-content>
-  </mat-card>
-
-  <button class="button-cart" (click)="addToShoppingCart()">
-    <mat-icon>add_shopping_cart</mat-icon>
-  </button>
 
 </div>

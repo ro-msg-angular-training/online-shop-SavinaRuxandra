@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 
-import { PRODUCTS } from "./mock-products"
-import { Product } from "./model/product.model"
+import { Product } from "./product.model"
 
 
 @Injectable({
@@ -10,20 +10,27 @@ import { Product } from "./model/product.model"
 })
 export class ProductService {
 
-  shoppingCart: Product[] = [];
+  private url = 'http://localhost:3000/products';
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
+
+  ngOnInit() {
+  }
 
   getProducts(): Observable<Product[]> {
-    return of(PRODUCTS)
+    return this.http
+          .get<Product[]>(this.url);
   }
 
   getProductById(id: number): Observable<Product> {
-    return of(PRODUCTS.find(product => product.id === id)!);
+    const urlGetById = `${this.url}/${id}`;
+    return this.http
+          .get<Product>(urlGetById);
   }
 
-  addToShoppingCart(product: Product): void {
-    this.shoppingCart.push(product);
-    console.log(product);
+  deleteProductById(id: number): Observable<Product> {
+    const urlDeleteById = `${this.url}/${id}`;
+    return this.http
+          .delete<Product>(urlDeleteById);
   }
 }

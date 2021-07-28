@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
-import { Product } from "../shared/model/product.model";
+import { Product } from "../shared/product.model";
 import { ProductService } from "../shared/product.service";
+import { ShoppingCartService } from "../shared/shopping-cart.service";
 
 
 @Component({
@@ -16,7 +17,8 @@ export class ProductDetailComponent implements OnInit {
 
   product!: Product;
 
-  constructor(private productService: ProductService,
+  constructor(private shoppingCartService: ShoppingCartService,
+              private productService: ProductService,
               private route: ActivatedRoute,
               private location: Location) {
     }
@@ -31,12 +33,18 @@ export class ProductDetailComponent implements OnInit {
         .subscribe(product => this.product = product);
   }
 
-  goBack(): void {
-    this.location.back();
+  deleteProductById(): void {
+    this.productService.deleteProductById(this.product.id)
+        .subscribe(() => this.location.back());
+    console.log(this.product);
   }
 
   addToShoppingCart(): void {
-    this.productService.addToShoppingCart(this.product);
+    this.shoppingCartService.addToShoppingCart(this.product);
+  }
+
+  goBack(): void {
+    this.location.back();
   }
 
 }
