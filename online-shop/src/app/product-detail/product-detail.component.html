@@ -1,8 +1,13 @@
 <!DOCTYPE html>
 
-<h2>Product Detail</h2>
+<div class="header">
+  <button class="button-back" (click)="goBack()">
+    <mat-icon>keyboard_arrow_left</mat-icon>
+  </button>
+  <h2>Product Detail</h2>
+</div>
 
-<div class="cards">
+<div class="cards" *ngIf="product">
   <mat-card>
     <mat-card-header>
       <mat-card-title>Product</mat-card-title>
@@ -49,4 +54,9 @@
       </mat-list>
     </mat-card-content>
   </mat-card>
+
+  <button class="button-cart" (click)="addToShoppingCart()">
+    <mat-icon>add_shopping_cart</mat-icon>
+  </button>
+
 </div>

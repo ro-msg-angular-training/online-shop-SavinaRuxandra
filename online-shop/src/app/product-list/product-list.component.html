@@ -8,6 +8,7 @@
   <mat-list-item *ngFor="let product of products">
     <p class="name" mat-line>{{ product.name }}</p>
     <p mat-line> {{product.description}} </p>
+    <a class="button" routerLink="/detail/{{product.id}}">details</a>
     <mat-divider></mat-divider>
   </mat-list-item>
 </mat-list>

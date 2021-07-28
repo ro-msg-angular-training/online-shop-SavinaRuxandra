@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Product } from "../model/product.model";
-import { ProductCategory } from "../model/productCategory.model";
-import { Supplier } from "../model/supplier.model";
+import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
+
+import { Product } from "../shared/model/product.model";
+import { ProductService } from "../shared/product.service";
+
 
 @Component({
   selector: 'app-product-detail',
@@ -11,32 +14,29 @@ import { Supplier } from "../model/supplier.model";
 
 export class ProductDetailComponent implements OnInit {
 
-    category: ProductCategory = {
-      id: 1,
-      name: 'productCategory',
-      description: 'description'
-    }
+  product!: Product;
 
-    supplier: Supplier = {
-      id: 1,
-      name: 'supplier'
-    }
-
-    product: Product = {
-      id: 1,
-      name: 'Product1',
-      description: 'Description1',
-      price: 10,
-      weight: 10,
-      category: this.category,
-      supplier: this.supplier,
-      imageUrl: 'image.png'
-    };
-
-  constructor() {
+  constructor(private productService: ProductService,
+              private route: ActivatedRoute,
+              private location: Location) {
     }
 
   ngOnInit(): void {
+    this.getProductById();
+  }
+
+  getProductById(): void {
+    const id = Number(this.route.snapshot.paramMap.get('id'));
+    this.productService.getProductById(id)
+        .subscribe(product => this.product = product);
+  }
+
+  goBack(): void {
+    this.location.back();
+  }
+
+  addToShoppingCart(): void {
+    this.productService.addToShoppingCart(this.product);
   }
 
 }

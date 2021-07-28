@@ -12,13 +12,26 @@ mat-list {
   margin-left: 10px
 }
 
-mat-divider {
-  color: solid #4CAF50;
+mat-list-item {
+  display: flex
 }
 
 .name {
   color: #4CAF50;
   margin-top: 10px;
   font-style: italic;
-  margin-left: auto;
+}
+
+a {
+  padding: 4px 4px;
+  text-decoration: none;
+  font-size: 15px;
+  cursor: pointer;
+  color: #fff;
+  background-color: #4caf50;
+  border-radius: 6px;
+}
+
+a:hover, a:active {
+  background-color: green;
 }

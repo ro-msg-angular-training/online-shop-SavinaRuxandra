@@ -6,6 +6,9 @@ import { ProductListComponent } from './product-list/product-list.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCardModule } from "@angular/material/card";
 import { MatListModule } from "@angular/material/list";
+import { AppRoutingModule } from './app-routing.module';
+import { MatIconModule } from '@angular/material/icon';
+
 
 @NgModule({
   declarations: [
@@ -17,7 +20,9 @@ import { MatListModule } from "@angular/material/list";
     BrowserModule,
     BrowserAnimationsModule,
     MatCardModule,
-    MatListModule
+    MatListModule,
+    AppRoutingModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

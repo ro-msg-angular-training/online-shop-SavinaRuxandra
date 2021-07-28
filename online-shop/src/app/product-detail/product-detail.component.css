@@ -1,7 +1,13 @@
+.header {
+  padding-top: 30px;
+  padding-left: 30px;
+  display:flex
+}
+
 h2 {
   color: #4CAF50;
-  font-size: 25px;
-  margin-left: 2%;
+  margin-left: 10px;
+  font-size: 25px
 }
 
 .cards {
@@ -30,4 +36,30 @@ p {
   margin-top: 10px;
   font-style: italic;
   margin-left: auto;
+}
+
+mat-icon {
+    color: #4CAF50;
+}
+
+button {
+  border-radius: 15px;
+  background: transparent;
+  border: 2px solid #4CAF50;
+}
+
+.button-back {
+  width: 30px;
+  height: 30px;
+  padding: 0 0 20px
+}
+
+.button-cart {
+  width: 40px;
+  height: 40px;
+  padding: 5px 0 0
+}
+
+button:hover {
+  background-color: #daf1da;
 }
