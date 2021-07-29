@@ -76,6 +76,28 @@ button:active {
   margin-right: 7px
 }
 
+.button-edit {
+  float: right;
+  width: 35px;
+  height: 35px;
+  border: 2px solid #4CAF50;
+  border-radius: 7px;
+  margin-right: 5px;
+}
+
+a:hover {
+  background-color: #daf1da;
+}
+
+a:active {
+  background-color: #00e600;
+}
+
+.edit{
+  color:red;
+  margin: 4px 0 5px 5px
+}
+
 .trash{
   color:red
 }

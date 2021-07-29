@@ -1,0 +1,68 @@
+<mat-card class="card">
+  <button class="button-back" (click)="goBack()">
+    <mat-icon>keyboard_arrow_left</mat-icon>
+  </button>
+
+  <mat-card-header>
+    <mat-card-title>Product</mat-card-title>
+    <mat-card-subtitle>- edit -</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+
+    <form [formGroup]="formGroup" (ngSubmit)="onSubmit('buttonType')">
+
+      <hr color="#4CAF50">
+
+      <mat-form-field appearance="standard">
+        <mat-label>Id</mat-label>
+        <input matInput type="number" autocomplete="off" placeholder="Id" formControlName="id" required/>
+        <mat-hint class="text-danger" *ngIf="formGroup.controls['name'].hasError('required') && formGroup.controls['id'].touched">
+          Id is required
+        </mat-hint>
+      </mat-form-field>
+
+      <mat-form-field appearance="standard">
+        <mat-label>Name</mat-label>
+        <input matInput type="text" autocomplete="off" placeholder="Name" formControlName="name" required/>
+        <mat-hint class="text-danger" *ngIf="formGroup.controls['name'].hasError('required') && formGroup.controls['name'].touched">
+          Name is required
+        </mat-hint>
+      </mat-form-field>
+
+      <mat-form-field appearance="standard">
+        <mat-label>Category</mat-label>
+        <input matInput type="text" autocomplete="off" placeholder="Category" formControlName="category" required/>
+        <mat-hint class="text-danger" *ngIf="formGroup.controls['category'].hasError('required') && formGroup.controls['category'].touched">
+          Category is required
+        </mat-hint>
+      </mat-form-field>
+
+      <mat-form-field appearance="standard">
+        <mat-label>Price</mat-label>
+        <input matInput type="number" autocomplete="off" placeholder="Price" formControlName="price" required/>
+        <mat-hint class="text-danger" *ngIf="formGroup.controls['price'].hasError('required') && formGroup.controls['price'].touched">
+          Price is required
+        </mat-hint>
+      </mat-form-field>
+
+      <mat-form-field appearance="standard">
+        <mat-label>Image</mat-label>
+        <input matInput type="text" autocomplete="off" placeholder="Image" formControlName="image"/>
+      </mat-form-field>
+
+      <mat-form-field appearance="standard">
+        <mat-label>Description</mat-label>
+        <input matInput type="text" autocomplete="off" placeholder="Description" formControlName="description" required/>
+        <mat-hint class="text-danger" *ngIf="formGroup.controls['description'].hasError('required') && formGroup.controls['description'].touched">
+          Description is required
+        </mat-hint>
+      </mat-form-field>
+
+      <button type="submit" [disabled]="formGroup.invalid" (click)="onSubmit('Submit')"><p>Submit</p></button>
+      <button type="button" (click)="onSubmit('Cancel')"><p>Cancel</p></button>
+
+    </form>
+
+  </mat-card-content>
+</mat-card>

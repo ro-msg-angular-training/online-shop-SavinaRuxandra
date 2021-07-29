@@ -32,6 +32,9 @@
     <button class="button-delete" (click)="deleteProductById()">
       <mat-icon class="trash">delete</mat-icon>
     </button>
+    <a class="button-edit" routerLink="/edit/{{product.id}}">
+      <mat-icon class="edit">edit</mat-icon>
+    </a>
   </mat-card>
 
 </div>

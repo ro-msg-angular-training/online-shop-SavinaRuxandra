@@ -28,6 +28,17 @@ export class ProductService {
           .get<Product>(urlGetById);
   }
 
+  addProduct(product: Product): Observable<Product> {
+    return this.http
+          .post<Product>(this.url, product);
+  }
+
+  updateProduct(id: number, product: Product): Observable<Product> {
+    const urlUpdate = `${this.url}/${id}`;;
+    return this.http
+          .put<Product>(urlUpdate, product);
+  }
+
   deleteProductById(id: number): Observable<Product> {
     const urlDeleteById = `${this.url}/${id}`;
     return this.http

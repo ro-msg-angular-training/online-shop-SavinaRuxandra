@@ -28,13 +28,7 @@ a {
   text-decoration: none;
   font-size: 15px;
   cursor: pointer;
-  background-color: #4caf50;
   border-radius: 6px;
-}
-
-
-a:hover, a:active {
-  background-color: #ccffcc;
 }
 
 .button-details {
@@ -56,8 +50,25 @@ a:hover, a:active {
   border-radius: 7px
 }
 
+.button-details:hover, button-shopping-cart:active {
+  background-color: #ccffcc;
+}
+
+.button-shopping-cart:hover, button-shopping-cart:active {
+  background-color: #ccffcc;
+}
+
 .shopping-cart {
   font-size: 40px;
   color: #4caf50;
   margin: 3px 0 0 15px
+}
+
+.button-add {
+  color: #4caf50;
+  margin-left: 5px;
+}
+
+.button-add:hover {
+  color: green
 }
