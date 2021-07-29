@@ -6,14 +6,18 @@ import { ProductListComponent } from 'src/app/views/product-list/product-list.co
 import { ShoppingCartComponent } from 'src/app/views/shopping-cart/shopping-cart.component';
 import { ProductEditComponent } from 'src/app/views/product-edit/product-edit.component';
 import { ProductAddComponent } from 'src/app/views/product-add/product-add.component';
+import { LoginComponent } from 'src/app/views/login/login.component';
+import { AuthGuard } from 'src/app/guards/auth.guard';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/products', pathMatch: 'full' },
-  { path: 'products', component: ProductListComponent },
-  { path: 'detail/:id', component: ProductDetailComponent },
-  { path: 'shopping-cart', component: ShoppingCartComponent },
-  { path: 'edit/:id', component: ProductEditComponent },
-  { path: 'add', component: ProductAddComponent },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
+  { path: 'products', component: ProductListComponent, canActivate: [AuthGuard] },
+  { path: 'detail/:id', component: ProductDetailComponent, canActivate: [AuthGuard] },
+  { path: 'shopping-cart', component: ShoppingCartComponent, canActivate: [AuthGuard] },
+  { path: 'edit/:id', component: ProductEditComponent, canActivate: [AuthGuard] },
+  { path: 'add', component: ProductAddComponent, canActivate: [AuthGuard] },
+  { path: '**', redirectTo: '' }
 ];
 
 @NgModule({

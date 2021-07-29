@@ -29,12 +29,11 @@
         <mat-list-item>Description: <p>&nbsp;{{product.description}}</p></mat-list-item>
       </mat-list>
     </mat-card-content>
-    <button class="button-delete" (click)="deleteProductById()">
+    <button class="button-delete" *ngIf="isEnabled" (click)="deleteProductById()">
       <mat-icon class="trash">delete</mat-icon>
     </button>
-    <a class="button-edit" routerLink="/edit/{{product.id}}">
+    <a class="button-edit" *ngIf="isEnabled" routerLink="/edit/{{product.id}}">
       <mat-icon class="edit">edit</mat-icon>
     </a>
   </mat-card>
-
 </div>

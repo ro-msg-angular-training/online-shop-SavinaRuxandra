@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { Product } from "src/app/models/product.model"
 import { ProductService } from "src/app/services/product.service"
+import { LoginService } from "src/app/services/login.service"
 
 @Component({
   selector: 'app-product-list',
@@ -11,11 +12,14 @@ import { ProductService } from "src/app/services/product.service"
 export class ProductListComponent implements OnInit {
 
   products?: Product[];
+  isEnabled?: boolean;
 
-  constructor(private productService: ProductService) {}
+  constructor(private productService: ProductService,
+              private loginService: LoginService) {}
 
   ngOnInit() {
     this.getProducts();
+    this.setIsEnabled();
   }
 
   getProducts(): void {
@@ -23,4 +27,10 @@ export class ProductListComponent implements OnInit {
         .subscribe(products => this.products = products);
   }
 
+  setIsEnabled(): void {
+    const userRoles = this.loginService.currentUser.roles;
+    if (userRoles.find(role => role === 'admin') != undefined) {
+      this.isEnabled = true;
+    }
+  }
 }

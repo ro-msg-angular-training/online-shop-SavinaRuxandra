@@ -5,7 +5,7 @@ import { Location } from '@angular/common';
 import { Product } from "src/app/models/product.model";
 import { ProductService } from "src/app/services/product.service";
 import { ShoppingCartService } from "src/app/services/shopping-cart.service";
-
+import { LoginService } from "src/app/services/login.service"
 
 @Component({
   selector: 'app-product-detail',
@@ -16,15 +16,18 @@ import { ShoppingCartService } from "src/app/services/shopping-cart.service";
 export class ProductDetailComponent implements OnInit {
 
   product!: Product;
+  isEnabled?: boolean;
 
   constructor(private shoppingCartService: ShoppingCartService,
               private productService: ProductService,
+              private loginService: LoginService,
               private route: ActivatedRoute,
               private location: Location) {
     }
 
   ngOnInit(): void {
     this.getProductById();
+    this.setIsEnabled();
   }
 
   getProductById(): void {
@@ -41,6 +44,13 @@ export class ProductDetailComponent implements OnInit {
 
   addToShoppingCart(): void {
     this.shoppingCartService.addToShoppingCart(this.product);
+  }
+
+  setIsEnabled(): void {
+    const userRoles = this.loginService.currentUser.roles;
+    if (userRoles.find(role => role === 'admin') != undefined) {
+      this.isEnabled = true;
+    }
   }
 
   goBack(): void {

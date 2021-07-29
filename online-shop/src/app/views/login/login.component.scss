@@ -1,0 +1,61 @@
+mat-card {
+  margin: 20px auto;
+  border: 10px #4caf50;
+  width: 500px;
+  border-top: 7px solid #4caf50;
+  border-radius: 5px;
+}
+
+mat-card-header {
+  display: block;
+  text-align: center;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+button {
+  width: 60px;
+  height: 40px;
+  border-radius: 5px;
+  background: transparent;
+  border: 2px solid #4caf50;
+  margin-right: 7px
+}
+
+button:hover {
+  background-color: #daf1da;
+}
+
+button:active {
+  background-color:#85e02b;
+}
+
+.button-back {
+  width: 30px;
+  height: 30px;
+  border-radius: 20px;
+  background: transparent;
+  border: 1px solid #1F2233;
+  margin: 0 0 20px;
+  padding-left: 2px;
+}
+
+p {
+  color: #4caf50;
+  font-weight: bold;
+}
+
+button[disabled] {
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+}
+
+.error {
+  margin-left: 40%;
+  font-family: "Times New Roman";
+  color: red;
+  font-size: 17px;
+}
