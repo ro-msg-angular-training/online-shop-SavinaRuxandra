@@ -3,9 +3,9 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 
-import { Product } from "./product.model"
-import { OrderDetail } from "./order-detail.model"
-import { OrderInput } from "./order-input.model"
+import { Product } from "../models/product.model"
+import { OrderDetail } from "../models/order-detail.model"
+import { OrderInput } from "../models/order-input.model"
 
 @Injectable({
   providedIn: 'root'

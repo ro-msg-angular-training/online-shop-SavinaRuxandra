@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 
-import { ShoppingCartService } from "../shared/shopping-cart.service"
-import { ProductService } from "../shared/product.service"
-import { Product } from "../shared/product.model"
-import { OrderInput } from "../shared/order-input.model"
-import { OrderDetail } from "../shared/order-detail.model"
+import { ShoppingCartService } from "src/app/services/shopping-cart.service"
+import { ProductService } from "src/app/services/product.service"
+import { Product } from "src/app/models/product.model"
+import { OrderInput } from "src/app/models/order-input.model"
+import { OrderDetail } from "src/app/models/order-detail.model"
 
 @Component({
   selector: 'app-shopping-cart',

@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
-import { Product } from "../shared/product.model";
-import { ProductService } from "../shared/product.service";
-import { ShoppingCartService } from "../shared/shopping-cart.service";
+import { Product } from "src/app/models/product.model";
+import { ProductService } from "src/app/services/product.service";
+import { ShoppingCartService } from "src/app/services/shopping-cart.service";
 
 
 @Component({
