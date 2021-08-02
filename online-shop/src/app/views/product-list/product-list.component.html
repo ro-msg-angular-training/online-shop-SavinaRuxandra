@@ -8,7 +8,7 @@
 </div>
 
 <mat-list>
-  <mat-list-item *ngFor="let product of products">
+  <mat-list-item *ngFor="let product of products$ | async">
     <p class="name" mat-line>{{ product.name }}</p>
     <a class="button-details" routerLink="/detail/{{product.id}}">details</a>
     <mat-divider></mat-divider>

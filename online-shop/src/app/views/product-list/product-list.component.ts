@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { Store, select } from "@ngrx/store";
+import { Observable } from 'rxjs';
 
 import { Product } from "src/app/models/product.model"
-import { ProductService } from "src/app/services/product.service"
 import { LoginService } from "src/app/services/login.service"
+import { selectProductList } from 'src/app/store/selectors/product.selectors';
+import { GetProducts } from 'src/app/store/product.actions';
+import { AppState } from 'src/app/store/state/app.state';
 
 @Component({
   selector: 'app-product-list',
@@ -11,20 +15,20 @@ import { LoginService } from "src/app/services/login.service"
 })
 export class ProductListComponent implements OnInit {
 
-  products?: Product[];
+  products$!: Observable<Product[]>;
   isEnabled?: boolean;
 
-  constructor(private productService: ProductService,
-              private loginService: LoginService) {}
+  constructor(private loginService: LoginService,
+              private store: Store<AppState>) {}
 
   ngOnInit() {
+    this.store.dispatch(new GetProducts());
     this.getProducts();
     this.setIsEnabled();
   }
 
   getProducts(): void {
-    this.productService.getProducts()
-        .subscribe(products => this.products = products);
+    this.products$ = this.store.pipe(select(selectProductList));
   }
 
   setIsEnabled(): void {
