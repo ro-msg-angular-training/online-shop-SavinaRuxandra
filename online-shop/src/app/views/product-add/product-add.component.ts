@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
-import { Location } from '@angular/common';
 
 import { Product } from "src/app/models/product.model"
-import { ProductService } from "src/app/services/product.service"
 import { ButtonType } from 'src/app/models/buttonType.model';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/store/states/app.state';
+import { AddProduct } from 'src/app/store/actions/product.actions';
 
 @Component({
   selector: 'app-product-add',
@@ -18,9 +19,9 @@ export class ProductAddComponent implements OnInit {
   buttonTypeSubmit: ButtonType = ButtonType.Submit;
   buttonTypeCancel: ButtonType = ButtonType.Cancel;
 
-  constructor(private productService: ProductService,
-              private formBuilder: FormBuilder,
-              private route: Router) { }
+  constructor(private formBuilder: FormBuilder,
+              private route: Router,
+              private store: Store<AppState>) { }
 
   ngOnInit(): void {
     this.createForm();
@@ -45,8 +46,8 @@ export class ProductAddComponent implements OnInit {
       image: this.formGroup.controls["image"].value,
       description: this.formGroup.controls["description"].value,
     }
-    this.productService.addProduct(product)
-        .subscribe(() => this.goBack());
+    this.store.dispatch(new AddProduct(product));
+    this.goBack();
   }
 
   cancelUpdate(): void {

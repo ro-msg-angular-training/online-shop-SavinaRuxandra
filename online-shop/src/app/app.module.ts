@@ -21,7 +21,7 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
-import { ProductEffects } from './store/product.effects'
+import { ProductEffects } from './store/effects/product.effects'
 import { appReducers } from './store/reducers/app.reducers';
 import { selectProductsFeature } from './store/selectors/product.selectors';
 

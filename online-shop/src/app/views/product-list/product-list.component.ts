@@ -5,8 +5,8 @@ import { Observable } from 'rxjs';
 import { Product } from "src/app/models/product.model"
 import { LoginService } from "src/app/services/login.service"
 import { selectProductList } from 'src/app/store/selectors/product.selectors';
-import { GetProducts } from 'src/app/store/product.actions';
-import { AppState } from 'src/app/store/state/app.state';
+import { GetProducts } from 'src/app/store/actions/product.actions';
+import { AppState } from 'src/app/store/states/app.state';
 
 @Component({
   selector: 'app-product-list',

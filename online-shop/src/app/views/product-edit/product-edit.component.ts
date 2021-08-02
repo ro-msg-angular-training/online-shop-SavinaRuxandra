@@ -4,8 +4,11 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
 import { Product } from "src/app/models/product.model"
-import { ProductService } from "src/app/services/product.service"
 import { ButtonType } from 'src/app/models/buttonType.model';
+import { select, Store } from '@ngrx/store';
+import { AppState } from 'src/app/store/states/app.state';
+import { selectSelectedProduct } from 'src/app/store/selectors/product.selectors';
+import { GetProductById, UpdateProduct } from 'src/app/store/actions/product.actions';
 
 @Component({
   selector: 'app-product-edit',
@@ -15,14 +18,14 @@ import { ButtonType } from 'src/app/models/buttonType.model';
 export class ProductEditComponent implements OnInit {
 
   formGroup!: FormGroup;
-  product!: Product;
+  product$ = this.store.pipe(select(selectSelectedProduct));
   buttonTypeSubmit: ButtonType = ButtonType.Submit;
   buttonTypeCancel: ButtonType = ButtonType.Cancel;
 
-  constructor(private productService: ProductService,
-              private formBuilder: FormBuilder,
+  constructor(private formBuilder: FormBuilder,
               private route: ActivatedRoute,
-              private location: Location) { }
+              private location: Location,
+              private store: Store<AppState>) { }
 
   ngOnInit(): void {
     this.createForm();
@@ -43,18 +46,18 @@ export class ProductEditComponent implements OnInit {
   }
 
   populateForm(): void {
-    this.formGroup.controls["id"].setValue(this.product.id);
-    this.formGroup.controls["name"].setValue(this.product.name);
-    this.formGroup.controls["category"].setValue(this.product.category);
-    this.formGroup.controls["price"].setValue(this.product.price);
-    this.formGroup.controls["image"].setValue(this.product.image);
-    this.formGroup.controls["description"].setValue(this.product.description);
+    this.product$.subscribe(product => {
+      this.formGroup.controls["id"].setValue(product.id);
+      this.formGroup.controls["name"].setValue(product.name);
+      this.formGroup.controls["category"].setValue(product.category);
+      this.formGroup.controls["price"].setValue(product.price);
+      this.formGroup.controls["image"].setValue(product.image);
+      this.formGroup.controls["description"].setValue(product.description);
+    })
   }
 
   getProductAndPopulateForm(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-        this.productService.getProductById(id)
-            .subscribe(product => this.product = product);
+    this.store.dispatch(new GetProductById(this.route.snapshot.params.id));
     setTimeout(() => this.populateForm());
   }
 
@@ -67,8 +70,8 @@ export class ProductEditComponent implements OnInit {
       image: this.formGroup.controls["image"].value,
       description: this.formGroup.controls["description"].value,
     }
-    this.productService.updateProduct(this.product.id, newProduct)
-        .subscribe(() => this.goBack());
+    this.store.dispatch(new UpdateProduct(newProduct));
+    this.goBack();
   }
 
   cancelUpdate(): void {

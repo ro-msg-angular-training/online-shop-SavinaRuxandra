@@ -2,10 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
-import { Product } from "src/app/models/product.model";
-import { ProductService } from "src/app/services/product.service";
 import { ShoppingCartService } from "src/app/services/shopping-cart.service";
 import { LoginService } from "src/app/services/login.service"
+import { AppState } from 'src/app/store/states/app.state';
+import { select, Store } from '@ngrx/store';
+import { AddProductToShoppingCart, DeleteProductById, GetProductById } from 'src/app/store/actions/product.actions';
+import { selectSelectedProduct } from 'src/app/store/selectors/product.selectors';
 
 @Component({
   selector: 'app-product-detail',
@@ -15,14 +17,14 @@ import { LoginService } from "src/app/services/login.service"
 
 export class ProductDetailComponent implements OnInit {
 
-  product!: Product;
+  product$ = this.store.pipe(select(selectSelectedProduct));
   isEnabled?: boolean;
 
   constructor(private shoppingCartService: ShoppingCartService,
-              private productService: ProductService,
               private loginService: LoginService,
               private route: ActivatedRoute,
-              private location: Location) {
+              private location: Location,
+              private store: Store<AppState>) {
     }
 
   ngOnInit(): void {
@@ -31,18 +33,16 @@ export class ProductDetailComponent implements OnInit {
   }
 
   getProductById(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.productService.getProductById(id)
-        .subscribe(product => this.product = product);
+    this.store.dispatch(new GetProductById(this.route.snapshot.params.id));
   }
 
   deleteProductById(): void {
-    this.productService.deleteProductById(this.product.id)
-        .subscribe(() => this.location.back());
+    this.store.dispatch(new DeleteProductById(this.route.snapshot.params.id));
+    this.goBack();
   }
 
   addToShoppingCart(): void {
-    this.shoppingCartService.addToShoppingCart(this.product);
+    this.product$.subscribe(product => this.store.dispatch(new AddProductToShoppingCart(product)));
   }
 
   checkIfRoleAdmin(): void {
@@ -55,5 +55,4 @@ export class ProductDetailComponent implements OnInit {
   goBack(): void {
     this.location.back();
   }
-
 }
