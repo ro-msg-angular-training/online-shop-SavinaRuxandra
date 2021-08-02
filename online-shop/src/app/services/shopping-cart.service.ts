@@ -6,6 +6,7 @@ import { catchError, retry } from 'rxjs/operators';
 import { Product } from "../models/product.model"
 import { OrderDetail } from "../models/order-detail.model"
 import { OrderInput } from "../models/order-input.model"
+import { urlShoppingCart } from './url-config';
 
 @Injectable({
   providedIn: 'root'
@@ -13,12 +14,8 @@ import { OrderInput } from "../models/order-input.model"
 export class ShoppingCartService {
 
   shoppingCart: Product[] = [];
-  private url = 'http://localhost:3000/orders';
 
   constructor(private http: HttpClient) { }
-
-  ngOnInit() {
-  }
 
   addToShoppingCart(product: Product): void {
     this.shoppingCart.push(product);
@@ -30,12 +27,12 @@ export class ShoppingCartService {
 
   newOrderRequest(orderInput: OrderInput): void {
       this.http
-            .post<OrderInput>(this.url, orderInput)
+            .post<OrderInput>(urlShoppingCart, orderInput)
             .pipe(catchError(this.handleError));
       this.shoppingCart = [];
   }
 
-  getProducts(): OrderDetail[] {
+  mapProductsToOrderDetail(): OrderDetail[] {
     let products: OrderDetail[] = [];
 
     for(let product of this.shoppingCart) {
@@ -44,14 +41,13 @@ export class ShoppingCartService {
         orderDetail.quantity = orderDetail.quantity + 1;
       }
       else {
-        let orderDetail: OrderDetail = {
+        let orderDetailNew: OrderDetail = {
           productId: product.id,
           quantity: 1
         }
-        products.push(orderDetail);
+        products.push(orderDetailNew);
       }
     }
-      console.log(products);
       return products;
   }
 

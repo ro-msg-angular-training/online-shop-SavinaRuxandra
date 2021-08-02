@@ -27,7 +27,7 @@ export class ProductDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.getProductById();
-    this.setIsEnabled();
+    this.checkIfRoleAdmin();
   }
 
   getProductById(): void {
@@ -39,16 +39,15 @@ export class ProductDetailComponent implements OnInit {
   deleteProductById(): void {
     this.productService.deleteProductById(this.product.id)
         .subscribe(() => this.location.back());
-    console.log(this.product);
   }
 
   addToShoppingCart(): void {
     this.shoppingCartService.addToShoppingCart(this.product);
   }
 
-  setIsEnabled(): void {
+  checkIfRoleAdmin(): void {
     const userRoles = this.loginService.currentUser.roles;
-    if (userRoles.find(role => role === 'admin') != undefined) {
+    if (userRoles.includes('admin')) {
       this.isEnabled = true;
     }
   }

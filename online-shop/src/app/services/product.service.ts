@@ -3,43 +3,39 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { Product } from "../models/product.model"
+import { urlProducts } from './url-config';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
 
-  private url = 'http://localhost:3000/products';
-
   constructor(private http: HttpClient) { }
-
-  ngOnInit() {
-  }
 
   getProducts(): Observable<Product[]> {
     return this.http
-          .get<Product[]>(this.url);
+          .get<Product[]>(urlProducts);
   }
 
   getProductById(id: number): Observable<Product> {
-    const urlGetById = `${this.url}/${id}`;
+    const urlGetById = `${urlProducts}/${id}`;
     return this.http
           .get<Product>(urlGetById);
   }
 
   addProduct(product: Product): Observable<Product> {
     return this.http
-          .post<Product>(this.url, product);
+          .post<Product>(urlProducts, product);
   }
 
   updateProduct(id: number, product: Product): Observable<Product> {
-    const urlUpdate = `${this.url}/${id}`;;
+    const urlUpdate = `${urlProducts}/${id}`;
     return this.http
           .put<Product>(urlUpdate, product);
   }
 
   deleteProductById(id: number): Observable<Product> {
-    const urlDeleteById = `${this.url}/${id}`;
+    const urlDeleteById = `${urlProducts}/${id}`;
     return this.http
           .delete<Product>(urlDeleteById);
   }

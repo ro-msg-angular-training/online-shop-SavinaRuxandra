@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
 import { Product } from "src/app/models/product.model"
 import { ProductService } from "src/app/services/product.service"
+import { ButtonType } from 'src/app/models/buttonType.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product-add',
@@ -14,11 +15,12 @@ import { ProductService } from "src/app/services/product.service"
 export class ProductAddComponent implements OnInit {
 
   formGroup!: FormGroup;
+  buttonTypeSubmit: ButtonType = ButtonType.Submit;
+  buttonTypeCancel: ButtonType = ButtonType.Cancel;
 
   constructor(private productService: ProductService,
               private formBuilder: FormBuilder,
-              private route: ActivatedRoute,
-              private location: Location) { }
+              private route: Router) { }
 
   ngOnInit(): void {
     this.createForm();
@@ -52,16 +54,16 @@ export class ProductAddComponent implements OnInit {
     this.goBack();
   }
 
-  onSubmit(buttonType: string): void {
-    if(buttonType==="Submit") {
+  onSubmit(buttonType: ButtonType): void {
+    if(buttonType===ButtonType.Submit) {
       this.addProduct();
     }
-    if(buttonType==="Cancel") {
+    if(buttonType===ButtonType.Cancel) {
       this.cancelUpdate();
     }
   }
 
   goBack(): void {
-    this.location.back();
+    this.route.navigate(['/products']);
   }
 }

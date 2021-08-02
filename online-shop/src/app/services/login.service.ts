@@ -5,23 +5,20 @@ import { map } from 'rxjs/operators';
 
 import { User } from "src/app/models/user.model"
 import { Credentials } from "src/app/models/credentials.model"
+import { urlLogin } from './url-config';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
 
-  private url = 'http://localhost:3000/login';
   public currentUser!: User;
 
   constructor(private http: HttpClient) { }
 
-  ngOnInit() {
-  }
-
   login(credentials: Credentials): Observable<User> {
     return this.http
-          .post<User>(this.url, credentials)
+          .post<User>(urlLogin, credentials)
           .pipe(map(user => this.currentUser = user));
   }
 }

@@ -5,6 +5,7 @@ import { Location } from '@angular/common';
 
 import { Product } from "src/app/models/product.model"
 import { ProductService } from "src/app/services/product.service"
+import { ButtonType } from 'src/app/models/buttonType.model';
 
 @Component({
   selector: 'app-product-edit',
@@ -15,6 +16,8 @@ export class ProductEditComponent implements OnInit {
 
   formGroup!: FormGroup;
   product!: Product;
+  buttonTypeSubmit: ButtonType = ButtonType.Submit;
+  buttonTypeCancel: ButtonType = ButtonType.Cancel;
 
   constructor(private productService: ProductService,
               private formBuilder: FormBuilder,
@@ -73,11 +76,11 @@ export class ProductEditComponent implements OnInit {
     this.goBack();
   }
 
-  onSubmit(buttonType: string): void {
-    if(buttonType==="Submit") {
+  onSubmit(buttonType: ButtonType): void {
+    if(buttonType===ButtonType.Submit) {
       this.updateProduct();
     }
-    if(buttonType==="Cancel") {
+    if(buttonType===ButtonType.Cancel) {
       this.cancelUpdate();
     }
   }
