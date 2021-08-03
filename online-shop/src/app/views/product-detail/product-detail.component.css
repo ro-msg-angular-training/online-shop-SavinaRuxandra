@@ -1,0 +1,109 @@
+.header {
+  padding-top: 30px;
+  padding-left: 30px;
+  display:flex
+}
+
+h2 {
+  color: #4CAF50;
+  margin-left: 10px;
+  font-size: 25px
+}
+
+.cards {
+  display: flex;
+}
+
+mat-card{
+  border: 5px #4caf50;
+  width: 100%;
+  border-top: 7px solid #4caf50;
+  border-left: 1px solid #4caf50;
+  border-right: 1px solid #4caf50;
+  border-radius: 10px;
+  margin-left: 2%;
+  margin-right: 2%;
+}
+
+mat-card-header {
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+
+p {
+  color: #4CAF50;
+  margin-top: 10px;
+  font-style: italic;
+  margin-left: auto;
+}
+
+mat-icon {
+    color: #4CAF50;
+}
+
+button {
+  border-radius: 15px;
+  background: transparent;
+  border: 2px solid #4CAF50;
+}
+
+button:hover {
+  background-color: #daf1da;
+}
+
+button:active {
+  background-color: #00e600;
+}
+
+.button-back {
+  width: 30px;
+  height: 30px;
+  padding: 0 0 20px
+}
+
+.button-cart {
+  width: 40px;
+  height: 40px;
+  padding: 5px 0 0
+}
+
+.button-delete {
+  float: right;
+  width: 40px;
+  height: 40px;
+  border-radius: 7px;
+  margin-right: 7px
+}
+
+.button-edit {
+  float: right;
+  width: 35px;
+  height: 35px;
+  border: 2px solid #4CAF50;
+  border-radius: 7px;
+  margin-right: 5px;
+}
+
+a:hover {
+  background-color: #daf1da;
+}
+
+a:active {
+  background-color: #00e600;
+}
+
+.edit{
+  color:red;
+  margin: 4px 0 5px 5px
+}
+
+.trash{
+  color:red
+}
+
+button[disabled] {
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+}

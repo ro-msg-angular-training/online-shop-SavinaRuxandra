@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<div class="header">
+  <h2>List of products</h2>
+  <a class="button-add" *ngIf="isEnabled" routerLink="/add">
+    <mat-icon class="add">add_circle_outline</mat-icon>
+  </a>
+  <a class="button-shopping-cart" routerLink="/shopping-cart"><mat-icon class="shopping-cart">shopping_cart</mat-icon></a>
+</div>
+
+<mat-list>
+  <mat-list-item *ngFor="let product of products$ | async">
+    <p class="name" mat-line>{{ product.name }}</p>
+    <a class="button-details" routerLink="/detail/{{product.id}}">details</a>
+    <mat-divider></mat-divider>
+  </mat-list-item>
+</mat-list>
